@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 
 @Controller('users')
 export class UsersController {
@@ -6,24 +14,26 @@ export class UsersController {
   findAll() {
     return [{ id: 1, name: 'Lili' }];
   }
+
   @Get(':id')
-  findById(@Param('id') id:string) {
+  findById(@Param('id') id: string) {
     return { id };
   }
+
   @Post()
-  Create(@Body() body: any) {
+  create(@Body() body: any) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return body;
   }
+
   @Put(':id')
-  Update(@Param('id') id: string, @Body() body) {
+  update(@Param('id') id: string, @Body() body: any) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return { id, ...body };
   }
+
   @Delete(':id')
-  Delete(@Param('id') id: string){
+  delete(@Param('id') id: string) {
     return { id };
   }
-}
-
 }
