@@ -8,6 +8,8 @@ import {
   Put,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { CreateUserDTO } from '../DTO/create_userDTO';
+import { UpdateUserDTO } from '../DTO/update_userDTO';
 
 @Controller('users')
 export class UsersController {
@@ -23,15 +25,15 @@ export class UsersController {
   }
 
   @Post()
-  create(@Body() body: any) {
+  create(@Body() createUserDto: CreateUserDTO) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return this.usersService.create(body);
+    return this.usersService.create(createUserDto);
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() body: any) {
+  update(@Param('id') id: string, @Body() updateuserDto: UpdateUserDTO) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return this.usersService.update(+id, body);
+    return this.usersService.update(+id, updateuserDto);
   }
 
   @Delete(':id')
