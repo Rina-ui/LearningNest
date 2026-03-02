@@ -7,33 +7,35 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
+  constructor(private usersService: UsersService) {}
   @Get()
   findAll() {
-    return [{ id: 1, name: 'Lili' }];
+    return this.usersService.findAll();
   }
 
   @Get(':id')
   findById(@Param('id') id: string) {
-    return { id };
+    return this.usersService.findOne(+id);
   }
 
   @Post()
   create(@Body() body: any) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return body;
+    return this.usersService.create(body);
   }
 
   @Put(':id')
   update(@Param('id') id: string, @Body() body: any) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return { id, ...body };
+    return this.usersService.update(+id, body);
   }
 
   @Delete(':id')
   delete(@Param('id') id: string) {
-    return { id };
+    return this.usersService.remove(+id);
   }
 }
