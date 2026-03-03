@@ -15,6 +15,7 @@ export class UsersService {
   create(user: any) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const newUser = { id: this.users.length + 1, ...user };
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     this.users.push(newUser);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return newUser;
